@@ -131,5 +131,14 @@ class gato(Animal):
         print(f"edad y genero:  {self.edad}  {self.genero}") 
         print(f"peso:  {self.peso} altura:  {self.altura}") 
         
-
+class delfin(Animal):
+    tipo_delfin=""
+    def descargar_g(self):
+        print('-----------------------------------------')
+        print(f"nombre:  {self.nombre}")
+        print(f"tipo animal:  {self.tipo_animal}")
+        print(f"raza:{self.raza_gato}")
+        print(f"edad y genero:  {self.edad}  {self.genero}") 
+        print(f"peso:  {self.peso} altura:  {self.altura}") 
+        
 
