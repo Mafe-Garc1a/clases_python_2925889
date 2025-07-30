@@ -140,5 +140,7 @@ class delfin(Animal):
         print(f"raza:{self.raza_gato}")
         print(f"edad y genero:  {self.edad}  {self.genero}") 
         print(f"peso:  {self.peso} altura:  {self.altura}") 
-        
 
+
+        
+# ----------------------------------------------------------------
