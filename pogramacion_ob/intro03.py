@@ -37,8 +37,9 @@ print("-----PRODUCTOS------")
 # print("reduccion exitosa?" , exito2)
 # print(producto1)
 
-# una clase pueede ser u tipo de dato (producto:Producto)
+# una clase pueede ser un tipo de dato (producto:Producto)
 class CarritoCompras:
+    # cuando cree un producto tiene que manar esto datos
     def __init__(self , usuario_id :int):
         self.usuario_id=usuario_id
         self.productos:List[dict]=[]
@@ -71,19 +72,26 @@ class CarritoCompras:
         for item in self.productos:
             producto =item['producto']
             cantidad =item['cantidad']
-            producto.reducir_stock(cantidad)
+        producto.reducir_stock(cantidad)
     
 # crear productos
 producto1=Producto(1,"laptop",1500.0,10)
 producto2=Producto(2,"mouse",25.0,50)
 producto3=Producto(3,"teclado",45.0,30)
-
+# creando un objeto 
 carrito=CarritoCompras(usuario_id=1001)
 carrito.agregar_producto(producto1,1)
-carrito.agregar_producto(producto2,2)
-carrito.agregar_producto(producto3,1)
+carrito.agregar_producto(producto2,5)
+carrito.agregar_producto(producto3,4)
 
+carrito.confirmar_compra()
+print(producto1)
+print(producto2)
+print(producto3)
+print(f"{carrito.obtener_resumen()}")
 total=carrito.calcular_total()
 print(f"total carrito: ${total:.2f}")
+
+
 
 # 2f->es para que saque el dat con 2 decimales
