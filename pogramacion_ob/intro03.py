@@ -37,15 +37,28 @@ exito2= producto1.aumento_stock(3)
 print("reduccion exitosa?" , exito2)
 print(producto1)
 
-
+# una clase pueede ser u tipo de dato (producto:Producto)
 class CarritoCompras:
     def __init__(self , usuario_id :int):
         self.usuario_id=usuario_id
         self.productos=List[dict]=[]
         self.fecha_creacion=datetime.now()
-    def agregar_producto(self ,producto:producto, cantidad:int)->bool:
+    def agregar_producto(self ,producto:Producto, cantidad:int)->bool:
         if producto.stock>=cantidad:
-            True
+            item ={
+                'producto':producto,
+                'cantidad':cantidad,
+                'precio_unitario':producto.precio,
+            }
+            self.productos.append(item)
+            return True
+        return False
+    def calcular_total(self)->float:
+        total=0
+        for item in self.productos:
+            total+=item['precio_unitario']*item['cantidad']
+        return total
+    
 
 
 

@@ -1,3 +1,6 @@
+# git remote add origin https://github.com/Mafe-Garc1a/clases_python.git
+# git branch -M main
+# git push -u origin main
 # crear persona
 # siempre 1 letra en mayuscula
 class Persona:
