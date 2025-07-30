@@ -95,3 +95,14 @@ print(f"total carrito: ${total:.2f}")
 
 
 # 2f->es para que saque el dat con 2 decimales
+
+
+# 1-crear software con 3 clases(estudiantes,profesores,notas)
+# 2-en los 3 deben estar el metodo constructor para llenar la informacion
+# 3-en esstudiante un metodo para cambiar el estado del estudiante(activo-inactivo{true,false})
+# 4-en la clase estudiante debe aver un atributo de asignaturas tpo lista
+# 5-en estudiantes debe aver u metodo agregar asignatura
+# 6-en la clase profesor debe aver un metodo calificar
+# 7-en la clase notas debe aver un metodo que reciba la asignaruta y la nota y diga si aprobo o no aprobo
+# 8-en la clase notas debe aver un metodo para imprimir  todas las notas del estudiante con sus asignaturas y si aprobo o no 
+# las notas solo pueden ser de 0 a 5
