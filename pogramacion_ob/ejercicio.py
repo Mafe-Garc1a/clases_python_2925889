@@ -27,14 +27,40 @@ class Estudiante:
             return True
         return False
     
-    # def ingresar_asignaturas(self, ):
+    # def ingresar_asignaturas(self ,asignaturas:Asignarutas ,codigo_asignatura:int ):
+    #     if(self.documento_estudiante!=documento_estudiante ):
+    #         if(self.asignaruta.codigo!=codigo_asignatura)
+    #         self.asignaturas.append(asignatura)
+    #         else:
+    #             print("la asignarura con este usuario ya esta registrado")
+
+class Asignatura:
+    def __init__(self , codigo:int, nombre_asignatura:str):
+            self.codigo=codigo
+            self.nombre_asignatura=nombre_asignatura 
+    def imprimir(self)->str:
+        print(f"CODIGO : {self.codigo}")
+        print(f"NOMBRE : {self.nombre_asignatura}")
+
+class Asignaturas():
+    def __init__(self):
+        self.asignaturas:List[dict]=[]
+    def agegar_A(self , asignaturas:Asignatura):
 
 
-class Asignaturas:
-    def __init__(self , codigo:int, nombre_asignatura:str ,):
-        self.codigo=codigo
-        self.nombre_asignatura=nombre_asignatura 
+        item={
+            'codigo':asignaturas.codigo,
+            'nombre':asignaturas.nombre_asignatura,
+        }
+        self.asignaturas.append(item)
+        
 
+
+    def ver_disponibles(self )->str:
+        print("estas son asignaturas disponibles")
+        for item in self.asignaturas:
+           print(item)
+            
  
 class Profesores:
     def __init__(self , documento_profesor:int , nombres:str , apellidos:str , codigo_asignatura):
@@ -63,3 +89,14 @@ class Notas:
 
         }
         
+# -------ingreso info-----------
+
+asignatura1=Asignatura(1,'matematicas')
+asignatura2=Asignatura(2,'español')
+asignatura3=Asignatura(3,'sociales')
+# asignatura1.imprimir()
+materias=Asignaturas()
+materias.agegar_A(asignatura1)
+materias.agegar_A(asignatura2)
+materias.agegar_A(asignatura3)
+materias.ver_disponibles()

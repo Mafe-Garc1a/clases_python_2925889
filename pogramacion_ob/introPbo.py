@@ -124,7 +124,7 @@ class perro(Animal):
         print(f"peso:  {self.peso} altura:  {self.altura}") 
 
 
-class gato(Animal):
+class Gato(Animal):
     raza_gato=""
     def descargar_g(self):
         print('-----------------------------------------')
@@ -136,7 +136,7 @@ class gato(Animal):
         
 class delfin(Animal):
     tipo_delfin=""
-    def descargar_g(self):
+    def descargar_d(self):
         print('-----------------------------------------')
         print(f"nombre:  {self.nombre}")
         print(f"tipo animal:  {self.tipo_animal}")
@@ -144,6 +144,30 @@ class delfin(Animal):
         print(f"edad y genero:  {self.edad}  {self.genero}") 
         print(f"peso:  {self.peso} altura:  {self.altura}") 
 
-
-        
+Animal1=Gato()
+Animal1.nombre="Tommy"
+Animal1.tipo_animal="felino"
+Animal1.raza="angora"
+Animal1.edad="3 años"
+Animal1.genero="macho"
+Animal1.peso="10.2 kg"
+Animal1.altura="15 om"
+Animal1.descargar_g()
 # ----------------------------------------------------------------
+print("------------JUGADORES"----------)
+class Luchador:
+    vida=100
+    apodo=""
+    genero=""'
+
+class Luchador1(Luchador):
+    fuerza_patada=60
+    fuerza_brazo=40
+    def informe(self):
+        
+
+
+
+
+
+
