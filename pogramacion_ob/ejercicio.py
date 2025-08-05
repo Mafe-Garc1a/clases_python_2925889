@@ -116,9 +116,9 @@ materias.ver_disponibles()
 # self , documento_estudiante:int ,nombres:str ,apellidos:str , estado:bool
 estudiante1=Estudiante(123,"Angelina" ,"Ocampo",True)
 estudiante1.estado_cambio(False)
-prof1 = Profesor("Vicente", "Nuñez", "1234567891", asig1)
+prof1 = Profesores("Vicente", "Nuñez", "1234567891", asig1)
 print (angelina.agregar_asignatura(asignatura1))
 print(angelina.todas_notas())
 
 nota1 = Notas(1)
-print(nota1.ingresar_notas(prof1, angelina, 2))
+print(nota1.calificar(prof1, angelina, 2))
