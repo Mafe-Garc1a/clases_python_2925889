@@ -73,15 +73,34 @@ class Profesores:
             self.codigo_asignatura=codigo_asignatura
         else:
             print("lo sentimos , esta asignatura no esta registrada en nuestro sistema")
-   
+    
 
 class Notas:
-    def __init__(self , nota:int , documento_estudiante:int):
-        if nota<=5 and nota>=0:
-            self.documento_estudiante=documento_estudiante
-            self.nota=nota
-        return print('nota fuera de rango')
-    def calificark(self , estudiante:Estudiante ,profesor:Profesores , nota:float ):
+    def __init__(self , nota_id:int):
+            self.nota_id=nota_id
+            self.lista_estudiantes_notas: List[dict] = []
+
+    def calificar(self,nota_id:int , nota:float , estudiante:Estudiante , profesor:Profesor)->str:
+        if nota < 5 and nota >0 :
+            item={
+                'nota':nota,
+                'nombre_estudiante':estudiante.nombres,
+                'profesor':profesor.nombres
+            }
+            self.lista_estudiantes_notas.append(item)
+            if nota >3 :
+                print("estudiante aprobo")
+            else:
+                if nota <3:
+                    print("estudiante reprobo")
+    def todas_notas(self)->str:
+        for item in self.lista_estudiantes_notas:
+            estudiante=item['nombre_estudiante']
+            profesor=item['profesor']
+            nota=item¨['nota']
+            return f"estudiante : {estudiante} , profesor:{profesor},nota:{nota}"
+
+   
         
 # -------ingreso info-----------
 
@@ -97,3 +116,9 @@ materias.ver_disponibles()
 # self , documento_estudiante:int ,nombres:str ,apellidos:str , estado:bool
 estudiante1=Estudiante(123,"Angelina" ,"Ocampo",True)
 estudiante1.estado_cambio(False)
+prof1 = Profesor("Vicente", "Nuñez", "1234567891", asig1)
+print (angelina.agregar_asignatura(asignatura1))
+print(angelina.todas_notas())
+
+nota1 = Notas(1)
+print(nota1.ingresar_notas(prof1, angelina, 2))
