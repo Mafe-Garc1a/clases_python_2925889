@@ -1,15 +1,21 @@
-Ejercicio: Sistema de Biblioteca Simple
-Crea un sistema para registrar libros prestados a usuarios. Cada libro tiene un título y un autor. Cada usuario puede prestar varios libros.
+# Ejercicio: Sistema de Biblioteca Simple
+# Crea un sistema para registrar libros prestados a usuarios. Cada libro tiene un título y un autor. Cada usuario puede prestar varios libros.
 
-Clases que vamos a usar:
-Libro
-Usuario
-Biblioteca
+# Clases que vamos a usar:
+# Libro
+# Usuario
+# Biblioteca
 
 from typing import List
 from datetime import datetime
 
+class Libro:
+    def __init__(self, titulo: str, autor: str):
+        self.__titulo = titulo         # Encapsulado
+        self.__autor = autor           # Encapsulado
 
+    def info_L(self) -> str:
+        return f"{self.__titulo} por {self.__autor}"
 class Biblioteca:
     def __init__(self):
         self.__libros_disponibles: List[Libro] = []
@@ -22,13 +28,7 @@ class Biblioteca:
         print("Libros disponibles en la biblioteca:")
         for libro in self.__libros_disponibles:
             print("  -", libro.info_L())
-class Libro:
-    def __init__(self, titulo: str, autor: str):
-        self.__titulo = titulo         # Encapsulado
-        self.__autor = autor           # Encapsulado
 
-    def info_L(self) -> str:
-        return f"{self.__titulo} por {self.__autor}"
 
 
 class Usuario:

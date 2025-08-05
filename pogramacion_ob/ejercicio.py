@@ -13,29 +13,6 @@
 from datetime import datetime #importante cuando se va a trabajar con fechas y horas (de esta clase importar ste objeto{paquetes de python})
 from typing import List
 
-class Estudiante:
-    def __init__(self , documento_estudiante:int ,nombres:str ,apellidos:str , estado:bool):
-        self.documento_estudiante=documento_estudiante
-        self.nombres=nombres
-        self.apellidos=apellidos
-        self.estado=estado
-        self.asignaturas:List[dict]=[]
-    
-    def cambio_estado(self,estado_cambio:bool)->bool:
-        if self.estado!=estado_cambio:
-            self.estado=estado_cambio
-            print("cambio")
-            return True
-        return False
-    def asignar_asignatura(self , asignaturas:Asignaturas ,codigo_asignatura:int):
-        if self.asignaturas.codigo!=codigo_asignatura:
-            print("si")
-            item={
-                'codigo':asignaturas.codigo,
-                'nombre_asignatura':asignaturas.nombre_asignatura,
-            }
-            self.asignaturas.append(item)
-
 class Asignatura:
     def __init__(self , codigo:int, nombre_asignatura:str):
             self.codigo=codigo
@@ -55,24 +32,53 @@ class Asignaturas():
             'nombre':asignaturas.nombre_asignatura,
         }
         self.asignaturas.append(item)
-        
-
-
     def ver_disponibles(self )->str:
         print("estas son asignaturas disponibles")
         for item in self.asignaturas:
            print(item)
             
+
+class Estudiante:
+    def __init__(self , documento_estudiante:int ,nombres:str ,apellidos:str , estado:bool):
+        self.documento_estudiante=documento_estudiante
+        self.nombres=nombres
+        self.apellidos=apellidos
+        self.estado=estado
+        self.asignaturas:List[dict]=[]
+    
+    def cambio_estado(self,estado_cambio:bool)->bool:
+        if self.estado!=estado_cambio:
+            self.estado=estado_cambio
+            print("cambio")
+            return True
+        return False
+    def asignar_asignatura(self , asignaturas:Asignaturas ):
+        # if self.asignaturas.codigo!=codigo_asignatura:
+        print("si")
+        item={
+            'codigo':asignaturas.codigo,
+            'nombre_asignatura':asignaturas.nombre_asignatura,
+        }
+        self.asignaturas.append(item)
+
+    
+        
+
+
+    
  
 class Profesores:
-    def __init__(self , documento_profesor:int , nombres:str , apellidos:str , codigo_asignatura:int , asignaturas_dispo:Asignaturas):
+    def __init__(self , documento_profesor:int , nombres:str , apellidos:str , codigo_asignatura:int):
         self.documento_profesor=documento_profesor
         self.nombres=nombres
         self.apellidos=apellidos
-        if codigo_asignatura==asignaturas_dispo:
-            self.codigo_asignatura=codigo_asignatura
-        else:
-            print("lo sentimos , esta asignatura no esta registrada en nuestro sistema")
+        # if codigo_asignatura==asignaturas_dispo:
+        self.codigo_asignatura=codigo_asignatura
+        # else:
+            # print("lo sentimos , esta asignatura no esta registrada en nuestro sistema")
+    
+    
+
     
 
 class Notas:
@@ -80,7 +86,7 @@ class Notas:
             self.nota_id=nota_id
             self.lista_estudiantes_notas: List[dict] = []
 
-    def calificar(self,nota_id:int , nota:float , estudiante:Estudiante , profesor:Profesor)->str:
+    def calificar(self, nota:float , estudiante:Estudiante , profesor:Profesores)->str:
         if nota < 5 and nota >0 :
             item={
                 'nota':nota,
@@ -93,12 +99,14 @@ class Notas:
             else:
                 if nota <3:
                     print("estudiante reprobo")
+
     def todas_notas(self)->str:
         for item in self.lista_estudiantes_notas:
             estudiante=item['nombre_estudiante']
             profesor=item['profesor']
-            nota=item¨['nota']
+            nota=item['nota']
             return f"estudiante : {estudiante} , profesor:{profesor},nota:{nota}"
+    
 
    
         
@@ -115,10 +123,11 @@ materias.agegar_A(asignatura3)
 materias.ver_disponibles()
 # self , documento_estudiante:int ,nombres:str ,apellidos:str , estado:bool
 estudiante1=Estudiante(123,"Angelina" ,"Ocampo",True)
-estudiante1.estado_cambio(False)
-prof1 = Profesores("Vicente", "Nuñez", "1234567891", asig1)
-print (angelina.agregar_asignatura(asignatura1))
-print(angelina.todas_notas())
+estudiante1.cambio_estado   (False)
+prof1 = Profesores(1,"Vicente", "Nuñez",asignatura1)
+print (estudiante1.asignar_asignatura(asignatura1))
+
 
 nota1 = Notas(1)
-print(nota1.calificar(prof1, angelina, 2))
+print(nota1.calificar(3,estudiante1,prof1))
+print(nota1.todas_notas())
