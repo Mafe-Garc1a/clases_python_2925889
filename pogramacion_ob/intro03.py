@@ -88,7 +88,7 @@ carrito.confirmar_compra()
 print(producto1)
 print(producto2)
 print(producto3)
-print(f"{carrito.obtener_resumen()}")
+print(f"{carrito.obtener_resumen()}")   
 total=carrito.calcular_total()
 print(f"total carrito: ${total:.2f}")
 

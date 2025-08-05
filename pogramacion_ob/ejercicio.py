@@ -23,16 +23,18 @@ class Estudiante:
     
     def cambio_estado(self,estado_cambio:bool)->bool:
         if self.estado!=estado_cambio:
-            self.estado==estado_cambio
+            self.estado=estado_cambio
+            print("cambio")
             return True
         return False
-    
-    # def ingresar_asignaturas(self ,asignaturas:Asignarutas ,codigo_asignatura:int ):
-    #     if(self.documento_estudiante!=documento_estudiante ):
-    #         if(self.asignaruta.codigo!=codigo_asignatura)
-    #         self.asignaturas.append(asignatura)
-    #         else:
-    #             print("la asignarura con este usuario ya esta registrado")
+    def asignar_asignatura(self , asignaturas:Asignaturas ,codigo_asignatura:int):
+        if self.asignaturas.codigo!=codigo_asignatura:
+            print("si")
+            item={
+                'codigo':asignaturas.codigo,
+                'nombre_asignatura':asignaturas.nombre_asignatura,
+            }
+            self.asignaturas.append(item)
 
 class Asignatura:
     def __init__(self , codigo:int, nombre_asignatura:str):
@@ -63,11 +65,15 @@ class Asignaturas():
             
  
 class Profesores:
-    def __init__(self , documento_profesor:int , nombres:str , apellidos:str , codigo_asignatura):
+    def __init__(self , documento_profesor:int , nombres:str , apellidos:str , codigo_asignatura:int , asignaturas_dispo:Asignaturas):
         self.documento_profesor=documento_profesor
         self.nombres=nombres
         self.apellidos=apellidos
-        self.codigo_asignatura=codigo_asignatura
+        if codigo_asignatura==asignaturas_dispo:
+            self.codigo_asignatura=codigo_asignatura
+        else:
+            print("lo sentimos , esta asignatura no esta registrada en nuestro sistema")
+   
 
 class Notas:
     def __init__(self , nota:int , documento_estudiante:int):
@@ -75,19 +81,7 @@ class Notas:
             self.documento_estudiante=documento_estudiante
             self.nota=nota
         return print('nota fuera de rango')
-    def agregar_notas(self , estudiante:Estudiante ,profesor:Profesores ):
-        item ={
-            'documento_estudiante':estudiante.documento_estudiante,
-            'nombre':estudiante.nombres,
-            'apellidos':estudiante.apellidos,
-        }
-        item2={
-            'documento_profesor':profesor.documento_profesor,
-            'nombres':profesor.nombres,
-            'apellidos':profesor.apellidos,
-            'asignatura':profesor.codigo_asignatura
-
-        }
+    def calificark(self , estudiante:Estudiante ,profesor:Profesores , nota:float ):
         
 # -------ingreso info-----------
 
@@ -100,3 +94,6 @@ materias.agegar_A(asignatura1)
 materias.agegar_A(asignatura2)
 materias.agegar_A(asignatura3)
 materias.ver_disponibles()
+# self , documento_estudiante:int ,nombres:str ,apellidos:str , estado:bool
+estudiante1=Estudiante(123,"Angelina" ,"Ocampo",True)
+estudiante1.estado_cambio(False)
