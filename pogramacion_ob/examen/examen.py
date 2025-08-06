@@ -121,7 +121,7 @@ class Estudiante:
         self.__notas:List[float]=[]
     def agregar_notas(self,nota:float)->float:
         self.__notas.append(nota)
-    def calcular_promedio(self)->str:
+    def calcular_promedio(self)->float:
         suma=0
         for nota in self.__notas:
             suma=suma+nota
@@ -196,8 +196,8 @@ class EstudiantePoo(Persona):
     def inscribirse(self,curso)->str:
         print(f"el estudiante {self.nombre} se ha inscrito n el curso {curso}")
 
-instructor1 = Instructor()
-instructor1.nombre="Ana Torres"
+instructor1 = Instructor() 
+instructor1.nombre="A na Torres"
 instructor1.documento="12345678"
 instructor1.correo="ana@correo.com"
 instructor1.area_experiencia="programacion"
