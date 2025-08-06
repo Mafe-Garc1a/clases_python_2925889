@@ -61,7 +61,7 @@ notas={
         }
 }
 
-
+agregar_curso:List[dict]=[]
 
 def promedio_estudiante_curso(nombre_curso:str,nombre_estudiante:str,notas)->str:
     suma=0
@@ -197,7 +197,7 @@ class EstudiantePoo(Persona):
         print(f"el estudiante {self.nombre} se ha inscrito n el curso {curso}")
 
 instructor1 = Instructor() 
-instructor1.nombre="A na Torres"
+instructor1.nombre="Ana Torres"
 instructor1.documento="12345678"
 instructor1.correo="ana@correo.com"
 instructor1.area_experiencia="programacion"
