@@ -211,3 +211,8 @@ estudiante1.ficha_formacion="F123"
 estudiante1.inscribirse("Python POO")
 
         
+# con todas las clases pase todo , que este en el diccionario de cada uno (instructor, estudiante) sus atributos de persona 
+# llenar  area experiencia con metodo e igual todo
+# metodo agregar estudiante al curso m, va a pedir curso y estudiante 
+# otra clase llamada notas y esa clase se va a encargar de llenar las notas  
+metdo agregar notas 
