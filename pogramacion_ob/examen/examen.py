@@ -34,7 +34,7 @@ print(mostrar_cursos(cursos))
 
 
 def buscar_curso_estudiante(nombre_estudiante:str ,cursos)->str:
-    contador[dict]=[]
+    contador=[]
     for item in cursos:
         estudiantes=item['estudiantes']
         nombre_curso=item['nombre_curso']
