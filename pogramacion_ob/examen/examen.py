@@ -191,10 +191,23 @@ class Instructor(Persona):
     area_experiencia=""
     def presentarse(self):
         print(f"hola , soy {self.nombre} , instructor del area de {self.area_experiencia} ")
+    def ingresar(self,area_experiencia:str):
+        self.area_experiencia.append(area_experiencia)
 class EstudiantePoo(Persona):
     ficha_formacion=""
     def inscribirse(self,curso)->str:
         print(f"el estudiante {self.nombre} se ha inscrito n el curso {curso}")
+
+class Notas:
+    nota:0
+    def agregar_notas(self,documento_instructor:int, documento_estudiante:int,nota:float ,  estudiantes:EstudiantePoo ,instructores:Instructor)->float:
+        for instructor in  instructores:
+            if instructor.documento==documento_instructor:
+                for estudiante in estudiantes:
+                    if estudiante.documento==documento_estudiante:
+
+            else:
+                print("lo siento , el instructor no esta en nuestra base de datos")
 
 instructor1 = Instructor() 
 instructor1.nombre="Ana Torres"
@@ -215,4 +228,5 @@ estudiante1.inscribirse("Python POO")
 # llenar  area experiencia con metodo e igual todo
 # metodo agregar estudiante al curso m, va a pedir curso y estudiante 
 # otra clase llamada notas y esa clase se va a encargar de llenar las notas  
-metdo agregar notas 
+# metdo agregar notas 
+    
