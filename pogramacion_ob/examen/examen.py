@@ -115,7 +115,7 @@ def reporte_estudiantes(nombre_estudiante ,notas)->str:
 print(reporte_estudiantes("Mateo",notas))
 
 print("*******************************")
-class Estudiante:
+class EstudianteEj:
     def __init__(self,nombres:str):
         self.nombres=nombres
         self.__notas:List[float]=[]
@@ -138,14 +138,14 @@ class Estudiante:
         
 
 
-estudiante1=Estudiante("Mafe")
+estudiante1=EstudianteEj("Mafe")
 estudiante1.agregar_notas(4.4)
 estudiante1.agregar_notas(3.5)
 print(estudiante1.calcular_promedio())
 print(estudiante1.estado())
 
 
-class Curso:
+class CursoEj:
     def __init__(self,nombre_curso:str,instructor:str):
         self.nombre_curso=nombre_curso
         self.instructor=instructor
@@ -181,23 +181,45 @@ curso_python.agregar_estudiante(est1)
 curso_python.agregar_estudiante(est2)
 curso_python.agregar_estudiante(est3)
 curso_python.mostrar_estudiantes()
-
+ print("*********************************")
+ print("*******unificacion***************")
+# creo dos diccionarios para guardar toda la informacion de estudiantes y instructores para luego hacer cambios o acceder a esos datos de manera independiente(por ejemplo si un estudiante se quiere inscrbir a otrom curso)y si se cambian datos se deben actualizar en todo si no existiera esto
+estudiantes = {} 
+instructores = {}  
 class Persona:
-    nombre=""
-    documento=0
-    correo=""
+    def __init__(self ,documento:int ,nombre:str ,correo:str ):
+        self.documento=documento
+        self.nombre=nombre
+        self.correo=correo
 
+# el super() solo tiene sentido cuando hay herencia 
+# sintaxys basica -> super().metodo_llamado()
 class Instructor(Persona):
-    area_experiencia=""
-    def presentarse(self):
-        print(f"hola , soy {self.nombre} , instructor del area de {self.area_experiencia} ")
-    def ingresar(self,area_experiencia:str):
-        self.area_experiencia.append(area_experiencia)
-class EstudiantePoo(Persona):
-    ficha_formacion=""
-    def inscribirse(self,curso)->str:
-        print(f"el estudiante {self.nombre} se ha inscrito n el curso {curso}")
+   def __init__(self, documento:int, nombre:str, correo:str, area_experiencia:str):
+        super().__init__(nombre, documento, correo) #utilizar metodos del padre (osea Persona) para no tener que volver a escribirlos
+        self.area_experiencia = area_experiencia
 
+    def presentarse(self):
+        print(f"Hola, soy {self.nombre}, instructor del área de {self.area_experiencia}")
+
+class Estudiante(Persona):
+   def __init__(self,documento:int ,nombre:str,correo:str,ficha_formacion:str):
+    super().__init__(documento,nombre,correo)
+    self.ficha_formacion=ficha_formacion
+
+    def inscribirse(self, nombre_curso:str)->str:
+        for curso in cursos:
+            nombre_curso_consulta=curso['nombre_curso']
+            if nombre_curso_consulta==nombre_curso:
+                consulta_estudiante=curso['estudiantes']
+                if consulta_estudiante!=self.documento:
+                    curso['estudiantes'].append(self.documento)
+                    return print(f"{self.documento} | {self.nombre} |se ha inscrito enn el curso {nombre_curso}")
+                else:
+                    return print(f"el estudiante {self.nombre} ya esta inscrito")
+            else:
+                return print("el urso no existe")
+        
 class Notas:
     nota:0
     def agregar_notas(self,documento_instructor:int, documento_estudiante:int,nota:float ,  estudiantes:EstudiantePoo ,instructores:Instructor)->float:
@@ -209,24 +231,19 @@ class Notas:
             else:
                 print("lo siento , el instructor no esta en nuestra base de datos")
 
-instructor1 = Instructor() 
-instructor1.nombre="Ana Torres"
-instructor1.documento="12345678"
-instructor1.correo="ana@correo.com"
-instructor1.area_experiencia="programacion"
-instructor1.presentarse()
-
-estudiante1 = EstudiantePoo()
-estudiante1.nombre="Pepito Perez"
-estudiante1.documento="87654321"
-estudiante1.correo="PepitoPerez@gmail.com"
-estudiante1.ficha_formacion="F123"
-estudiante1.inscribirse("Python POO")
 
         
-# con todas las clases pase todo , que este en el diccionario de cada uno (instructor, estudiante) sus atributos de persona 
-# llenar  area experiencia con metodo e igual todo
-# metodo agregar estudiante al curso m, va a pedir curso y estudiante 
-# otra clase llamada notas y esa clase se va a encargar de llenar las notas  
-# metdo agregar notas 
+# def calcular_promedio(self)->float:
+    #     suma=0
+    #     for nota in self.__notas:
+    #         suma=suma+nota
+    #     promedio=suma/len(self.__notas)
+    #     print(f"promedio : {promedio}")
+    #     return promedio
+    # def estado(self)->str:
+    #     promedio=self.calcular_promedio()
+    #     if promedio >=3.5 :
+    #         return f"aprobo"
+    #     else:
+    #         return f"reprobo"
     

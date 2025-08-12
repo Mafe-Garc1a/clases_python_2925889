@@ -1,6 +1,7 @@
 from typing import List, Dict
 
-# Diccionarios originales (SE MANTIENEN TAL CUAL)
+# ---------------- Diccionarios originales ------------------
+
 cursos = [
     {
         "id": 1,
@@ -28,7 +29,6 @@ notas = {
     }
 }
 
-# Nuevos diccionarios reutilizables para registros
 estudiantes = {}  # documento: objeto Estudiante
 instructores = {}  # documento: objeto Instructor
 
@@ -71,9 +71,28 @@ class Estudiante(Persona):
         print("Curso no encontrado.")
 
 
+class Curso:
+    def __init__(self, id, nombre_curso, documento_instructor):
+        if documento_instructor not in instructores:
+            print("Instructor no registrado.")
+            return
+
+        instructor = instructores[documento_instructor]
+        nuevo_curso = {
+            "id": id,
+            "nombre_curso": nombre_curso,
+            "instructor": instructor.nombre,
+            "estudiantes": []
+        }
+        cursos.append(nuevo_curso)
+        print(f"Curso '{nombre_curso}' creado correctamente con el instructor {instructor.nombre}")
+
+
 class Notas:
-    @staticmethod
-    def agregar_nota(nombre_curso, nombre_estudiante, documento_instructor, nota):
+    def __init__(self):
+        pass
+
+    def agregar_nota(self, nombre_curso, nombre_estudiante, documento_instructor, nota):
         curso = next((c for c in cursos if c["nombre_curso"] == nombre_curso), None)
         if not curso:
             print("Curso no existe.")
@@ -91,8 +110,7 @@ class Notas:
         notas[nombre_curso][nombre_estudiante].append(nota)
         print("Nota agregada correctamente.")
 
-    @staticmethod
-    def promedio_estudiante_curso(nombre_curso, nombre_estudiante):
+    def promedio_estudiante_curso(self, nombre_curso, nombre_estudiante):
         if nombre_curso in notas and nombre_estudiante in notas[nombre_curso]:
             calificaciones = notas[nombre_curso][nombre_estudiante]
             promedio = sum(calificaciones) / len(calificaciones)
@@ -101,17 +119,15 @@ class Notas:
         print("No hay notas registradas.")
         return 0
 
-    @staticmethod
-    def reporte_estudiante(nombre_estudiante):
+    def reporte_estudiante(self, nombre_estudiante):
         print(f"\n--- Reporte de {nombre_estudiante} ---")
         for curso_nombre, estudiantes_notas in notas.items():
             if nombre_estudiante in estudiantes_notas:
-                promedio = Notas.promedio_estudiante_curso(curso_nombre, nombre_estudiante)
+                promedio = self.promedio_estudiante_curso(curso_nombre, nombre_estudiante)
                 estado = "Aprobó" if promedio >= 3.5 else "Reprobó"
                 print(f"{curso_nombre} | Promedio: {promedio:.2f} | Estado: {estado}")
 
-    @staticmethod
-    def aprobados_por_curso():
+    def aprobados_por_curso(self):
         print("\n--- Aprobados por Curso ---")
         for curso_nombre, estudiantes_notas in notas.items():
             print(f"\nCurso: {curso_nombre}")
@@ -127,6 +143,7 @@ def mostrar_cursos():
     for curso in cursos:
         print(f"ID: {curso['id']} | Curso: {curso['nombre_curso']} | Instructor: {curso['instructor']}")
         print(f"Estudiantes inscritos: {curso['estudiantes']}")
+
 
 def buscar_curso_por_estudiante(nombre_estudiante):
     cursos_encontrados = []
@@ -149,21 +166,26 @@ estudiantes[est1.documento] = est1
 estudiantes[est2.documento] = est2
 estudiantes[est3.documento] = est3
 
+# Crear un nuevo curso
+nuevo_curso = Curso(3, "POO en Python", "111")
+
 # Inscribir estudiantes a cursos existentes
 est1.inscribirse("python Basico")
 est3.inscribirse("Algoritmos")
+est3.inscribirse("POO en Python")
 
-# Agregar notas con control de instructor
-Notas.agregar_nota("python Basico", "Carlos", "111", 4.0)
-Notas.agregar_nota("python Basico", "Carlos", "111", 4.5)
-Notas.agregar_nota("Algoritmos", "Mateo", "111", 4.7)
+# Agregar notas con clase Notas
+notas_clase = Notas()
+notas_clase.agregar_nota("python Basico", "Carlos", "111", 4.0)
+notas_clase.agregar_nota("python Basico", "Carlos", "111", 4.5)
+notas_clase.agregar_nota("Algoritmos", "Mateo", "111", 4.7)
+notas_clase.agregar_nota("POO en Python", "Mateo", "111", 5.0)
 
 # Mostrar información
 mostrar_cursos()
-Notas.reporte_estudiante("Carlos")
-Notas.reporte_estudiante("Mateo")
-Notas.aprobados_por_curso()
+notas_clase.reporte_estudiante("Carlos")
+notas_clase.reporte_estudiante("Mateo")
+notas_clase.aprobados_por_curso()
 
 print("\nCursos de Mateo:")
 print(buscar_curso_por_estudiante("Mateo"))
-0
