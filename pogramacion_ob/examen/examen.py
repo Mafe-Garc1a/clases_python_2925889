@@ -115,72 +115,72 @@ def reporte_estudiantes(nombre_estudiante ,notas)->str:
 print(reporte_estudiantes("Mateo",notas))
 
 print("*******************************")
-# class EstudianteEj:
-#     def __init__(self,nombres:str):
-#         self.nombres=nombres
-#         self.__notas:List[float]=[]
-#     def agregar_notas(self,nota:float)->float:
-#         self.__notas.append(nota)
-#     def calcular_promedio(self)->float:
-#         suma=0
-#         for nota in self.__notas:
-#             suma=suma+nota
-#         promedio=suma/len(self.__notas)
-#         print(f"promedio : {promedio}")
-#         return promedio
-#     def estado(self)->str:
-#         promedio=self.calcular_promedio()
-#         if promedio >=3.5 :
-#             return f"aprobo"
-#         else:
-#             return f"reprobo"
+class EstudianteEj:
+    def __init__(self,nombres:str):
+        self.nombres=nombres
+        self.__notas:List[float]=[]
+    def agregar_notas(self,nota:float)->float:
+        self.__notas.append(nota)
+    def calcular_promedio(self)->float:
+        suma=0
+        for nota in self.__notas:
+            suma=suma+nota
+        promedio=suma/len(self.__notas)
+        print(f"promedio : {promedio}")
+        return promedio
+    def estado(self)->str:
+        promedio=self.calcular_promedio()
+        if promedio >=3.5 :
+            return f"aprobo"
+        else:
+            return f"reprobo"
     
         
 
 
-# estudiante1=EstudianteEj("Mafe")
-# estudiante1.agregar_notas(4.4)
-# estudiante1.agregar_notas(3.5)
-# print(estudiante1.calcular_promedio())
-# print(estudiante1.estado())
+estudiante1=EstudianteEj("Mafe")
+estudiante1.agregar_notas(4.4)
+estudiante1.agregar_notas(3.5)
+print(estudiante1.calcular_promedio())
+print(estudiante1.estado())
 
 
-# class CursoEj:
-#     def __init__(self,nombre_curso:str,instructor:str):
-#         self.nombre_curso=nombre_curso
-#         self.instructor=instructor
-#         self.estudiantes:List[Estudiante]=[]
+class CursoEj:
+    def __init__(self,nombre_curso:str,instructor:str):
+        self.nombre_curso=nombre_curso
+        self.instructor=instructor
+        self.estudiantes:List[Estudiante]=[]
 
-#     def agregar_estudiante(self , estudiante:EstudianteEj):
-#         self.estudiantes.append(estudiante)
-#     def mostrar_estudiantes(self)->str:
-#         print(f"curso{self.nombre_curso}-Instructor:{self.instructor}")
-#         for estudiante in self.estudiantes:
-#             nombre_estudiante=estudiante.nombres
-#             promedio=estudiante.calcular_promedio()
-#             estado=estudiante.estado()
-#             print(f"-{nombre_estudiante} |promedio : {promedio}  | estado : {estado}")
-
-
-# curso_python = CursoEj("Python Intermedio", "Sandra Ruiz")
+    def agregar_estudiante(self , estudiante:EstudianteEj):
+        self.estudiantes.append(estudiante)
+    def mostrar_estudiantes(self)->str:
+        print(f"curso{self.nombre_curso}-Instructor:{self.instructor}")
+        for estudiante in self.estudiantes:
+            nombre_estudiante=estudiante.nombres
+            promedio=estudiante.calcular_promedio()
+            estado=estudiante.estado()
+            print(f"-{nombre_estudiante} |promedio : {promedio}  | estado : {estado}")
 
 
-# est1 = EstudianteEj("Carlos")
-# est1.agregar_notas(4.0)
-# est1.agregar_notas(4.5)
+curso_python = CursoEj("Python Intermedio", "Sandra Ruiz")
 
-# est2 = EstudianteEj("Laura")
-# est2.agregar_notas(3.0)
-# est2.agregar_notas(3.2)
 
-# est3 = EstudianteEj("Mateo")
-# est3.agregar_notas(5.0)
-# est3.agregar_notas(4.9)
+est1 = EstudianteEj("Carlos")
+est1.agregar_notas(4.0)
+est1.agregar_notas(4.5)
 
-# curso_python.agregar_estudiante(est1)
-# curso_python.agregar_estudiante(est2)
-# curso_python.agregar_estudiante(est3)
-# curso_python.mostrar_estudiantes()
+est2 = EstudianteEj("Laura")
+est2.agregar_notas(3.0)
+est2.agregar_notas(3.2)
+
+est3 = EstudianteEj("Mateo")
+est3.agregar_notas(5.0)
+est3.agregar_notas(4.9)
+
+curso_python.agregar_estudiante(est1)
+curso_python.agregar_estudiante(est2)
+curso_python.agregar_estudiante(est3)
+curso_python.mostrar_estudiantes()
 
 
 print("*******************************")
@@ -250,10 +250,10 @@ class Notas:
                 if curso['instructor'] == instructores[self.documento_instructor].nombre:
                     if self.documento_estudiante in curso['estudiantes']:
                         if self.nombre_curso not in notas:
-                            notas[self.nombre_curso] = {}
+                            notas[self.nombre_curso] = {} #se crea este diccionario por si aun no esta el curso en notas
 
                         if self.documento_estudiante not in notas[self.nombre_curso]:
-                            notas[self.nombre_curso][self.documento_estudiante] = []
+                            notas[self.nombre_curso][self.documento_estudiante] = []#lo mismo pero con el estudiante
 
                         notas[self.nombre_curso][self.documento_estudiante].append(nota)
                         print("Nota agregada correctamente.")
@@ -268,7 +268,9 @@ class Notas:
 
     def promedio_estudiante_curso(self, nombre_curso, documento_estudiante) -> float:
         if nombre_curso in notas and documento_estudiante in notas[nombre_curso]:
-            suma = sum(notas[nombre_curso][documento_estudiante])
+            suma = 0
+            for nota in notas[nombre_curso][documento_estudiante]:
+                suma =suma+ nota
             promedio = suma / len(notas[nombre_curso][documento_estudiante])
             print(f"{documento_estudiante} | Promedio en {nombre_curso}: {promedio:.2f}")
             return promedio
@@ -280,7 +282,10 @@ class Notas:
         for curso_nombre, estudiantes_notas in notas.items():
             if documento_estudiante in estudiantes_notas:
                 promedio = self.promedio_estudiante_curso(curso_nombre, documento_estudiante)
-                estado = "Aprobó" if promedio >= 3.5 else "Reprobó"
+                if promedio>=3.5:
+                    estado="aprobo"
+                else:
+                    estado="reprobo"
                 print(f"{curso_nombre} | Promedio: {promedio:.2f} | Estado: {estado}")
 
     
@@ -288,7 +293,10 @@ class Notas:
         for curso, estudiantes in notas_dict.items():
             print(f"Materia: {curso}")
             for estudiante, calificaciones in estudiantes.items():
-                promedio_general = sum(calificaciones) / len(calificaciones)
+                suma = 0
+                for calificacion in calificaciones:
+                    suma =suma +calificacion
+                promedio_general = suma / len(calificaciones)
                 if promedio_general >= 3.5:
                     print(f"APROBÓ | Estudiante: {estudiante} | Promedio: {promedio_general:.2f}")
 
