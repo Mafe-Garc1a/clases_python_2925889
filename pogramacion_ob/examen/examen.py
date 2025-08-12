@@ -195,13 +195,13 @@ class Persona:
         self.nombre = nombre
         self.correo = correo
 
-# Clase Instructor
+
 class Instructor(Persona):
     def __init__(self, documento:int, nombre:str, correo:str, area_experiencia:str):
         super().__init__(documento, nombre, correo)
         self.area_experiencia = area_experiencia
 
-# Clase Estudiante
+
 class Estudiante(Persona):
     def __init__(self, documento:int, nombre:str, correo:str, ficha_formacion:str):
         super().__init__(documento, nombre, correo)
