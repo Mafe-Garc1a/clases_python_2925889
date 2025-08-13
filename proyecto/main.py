@@ -56,3 +56,20 @@ def guardar_producto(producto:Item , cuantity:int ):
 # crear una lista de diccionario vacia fuera de todo para que quede global
 # crear un esquema que se llame aprendiz y va a pedir el nombre , la edad , correo eletronico ,ficha
 # crear en enpoit que reciba ese esquema  , lo almacene en la lista de diccionaros vacia y que retorne la lista de todos los que ah ido guardado
+
+lista_aprendices = []
+class Aprendices(BaseModel): 
+    nombre:str
+    edad: int
+    correo: str
+    ficha:int
+
+
+@app.post('/guardar-aprendiz')
+def guardar_aprendiz(estudiante: Aprendices): 
+    lista_aprendices.append(estudiante)
+    return lista_aprendices
+
+@app.put('/editar-aprendiz')
+def editar_aprendiz(aprendiz: Aprendices, nombre: str): 
+    # falta condicional, si se encuentra se hace el cambio, de resto se le dice q lo ingreselista_aprendices = []
