@@ -11,13 +11,13 @@ class Settings(BaseSettings): #clase con herencias
     PROJECT_DESCRIPTION: str = "Aplicación para gestionar granjas avicolas"
 
     # Configuración de la base de datos
-    DB_HOST: str = os.getenv("DB_HOST", "localhost")
-    DB_PORT: int = int(os.getenv("DB_PORT", "3306"))
+    DB_HOST: str = os.getenv("DB_HOST", "localhost") #vaya al sistema operativo  utililice y busque  db_host sino pongale localhost
+    DB_PORT: int = int(os.getenv("DB_PORT", "3306")) #convierta a entero el port
     DB_USER: str = os.getenv("DB_USER", "root")
     DB_PASSWORD: str = os.getenv("DB_PASSWORD", "")
     DB_NAME: str = os.getenv("DB_NAME", "")
 
-    DATABASE_URL: str = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    DATABASE_URL: str = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}" #esto es para el crud 
     
     # Configuración JWT
     jwt_secret: str = os.getenv("JWT_SECRET")
@@ -27,4 +27,4 @@ class Settings(BaseSettings): #clase con herencias
     class Config:
         env_file = ".env"
 
-settings = Settings()
+settings = Settings() #construye un objeto(variable de una clase)

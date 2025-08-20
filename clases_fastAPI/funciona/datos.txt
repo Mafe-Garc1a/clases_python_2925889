@@ -127,7 +127,7 @@ settings = Settings()
 
 
 
-### 2.2. Configuración de la conexión a la base de datos (core/database.py)
+### 4.2. Configuración de la conexión a la base de datos (core/database.py)
 
 """
 Configuración de conexión a la base de datos usando SQLAlchemy.
